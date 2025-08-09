@@ -4,7 +4,9 @@
 Welcome! In this post, I’ll guide you through how I built a scalable, secure, serverless ride-sharing web app using popular AWS services. From linking my code with GitHub and Amplify to deploying, securing users with Cognito, managing backend logic with Lambda, and storing data in DynamoDB — this project has it all!
 
 Architecture Overview
+
 Before diving into the implementation, let’s understand the architecture:
+
 <img width="720" height="321" alt="image" src="https://github.com/user-attachments/assets/d8bad80b-f666-46ed-9713-b1bb9e94f847" />
 
 The application consists of several key components:
@@ -17,7 +19,9 @@ Frontend Hosting: AWS Amplify hosts our static web content
 5. Version Control: GitHub integration for continuous deployment
    
 🔗 Step 1: Connect GitHub & Deploy with Amplify
+
 I connected my GitHub repo to AWS Amplify. With every push, Amplify automatically builds and deploys the latest version.
+
 <img width="720" height="386" alt="image" src="https://github.com/user-attachments/assets/faf09b0a-7989-453b-867a-7c71d4b99be3" />
 <img width="720" height="342" alt="image" src="https://github.com/user-attachments/assets/c90bec44-22de-4f44-ac8d-1f908bfdd2b9" />
 
@@ -34,9 +38,13 @@ Security first! I integrated Amazon Cognito to let users sign up and sign in saf
 <img width="720" height="362" alt="image" src="https://github.com/user-attachments/assets/87813ad0-956a-4bf8-9404-d16aa1465073" />
 
 update user pool Id and client Id on config.js
+
 <img width="720" height="367" alt="image" src="https://github.com/user-attachments/assets/ea0e9850-4bf0-460f-a2f2-9cdb14a30b87" />
+
 After updating config.js file
+
 <img width="720" height="381" alt="image" src="https://github.com/user-attachments/assets/a118d82e-39bd-4fd5-ab81-76f090a52a82" />
+
 you can login using your mail ID
 
 <img width="720" height="404" alt="image" src="https://github.com/user-attachments/assets/f14771d2-4b8d-4a2c-a3b9-c1f337fd9e73" />
@@ -53,13 +61,17 @@ copy the database arn:
 I created an IAM role to allow my Lambda functions and API Gateway to securely access DynamoDB. To do this, I attached an inline policy with specific DynamoDB permissions. The inline policy uses the DynamoDB table ARN to restrict actions only to that table, following the principle of least privilege.
 
 For example, I allowed actions like dynamodb:PutItem
+
 <img width="720" height="388" alt="image" src="https://github.com/user-attachments/assets/c1bf0fbd-f0d5-4aea-9fe0-08c1d1dcfa53" />
 <img width="720" height="373" alt="image" src="https://github.com/user-attachments/assets/59dc6d80-328e-4739-9e35-1e67e847c627" />
 <img width="720" height="382" alt="image" src="https://github.com/user-attachments/assets/7f3c6fef-b2bb-4c58-9659-257132695023" />
 
 ⚙️ Step 6: Lambda Function & Backend Code
+
 I created a Lambda function, attached the IAM role, and added this backend logic:
+
 <img width="720" height="375" alt="image" src="https://github.com/user-attachments/assets/25916491-200d-4021-b2c5-bfe862749ddb" />
+
 <img width="720" height="386" alt="image" src="https://github.com/user-attachments/assets/c5afac02-6437-4062-a189-e71500dff7db" />
 
 {
@@ -122,17 +134,19 @@ region: ‘YOUR_REGION’,
 };
 
 <img width="720" height="378" alt="image" src="https://github.com/user-attachments/assets/4a6b44cf-813c-45b7-821e-984af82b4b1b" />
+
 <img width="720" height="368" alt="image" src="https://github.com/user-attachments/assets/bdee8396-49a7-418b-b391-391c6a4aff68" />
 
 ✅ Final Step: Fully Working Deployment
 After deploying everything, I tested the full workflow:
 
-User signs up and logs in.
-The frontend calls the secured API Gateway.
-The Lambda function runs and saves ride data to DynamoDB.
-The live app is accessible via the Amplify URL.
+* User signs up and logs in.
+* The frontend calls the secured API Gateway.
+* The Lambda function runs and saves ride data to DynamoDB.
+* The live app is accessible via the Amplify URL.
 
 <img width="720" height="385" alt="image" src="https://github.com/user-attachments/assets/74f1e834-9e72-48c2-bd77-ca24b2eeba02" />
+
 <img width="720" height="381" alt="image" src="https://github.com/user-attachments/assets/1da555ab-763e-4682-b273-9203802b28a9" />
 
 all the users information is stored in DynamoDB table
